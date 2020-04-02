@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class SpotifyService {
   private searchUrl: string;
   private artistUrl: string;
+  private albumsUrl: string;
   private albumUrl: string;
   private clientId: string = 'a8746fd779094aa0af12746b73a33127';
   private clientSecret: string = '206ac18c11344af9845ac42d95c8e28a';
@@ -48,11 +49,22 @@ export class SpotifyService {
     let headers = new Headers();
     headers.append('Authorization', 'Bearer ' + authToken);
 
-    this.albumUrl = 'https://api.spotify.com/v1/artists/'+artistId+'/albums';
+    this.albumsUrl = 'https://api.spotify.com/v1/artists/'+artistId+'/albums';
+
+    return this.http.get(this.albumsUrl, { headers: headers })
+    .pipe(map(res => res.json()));
+  }
+  
+  getAlbum(id:string, authToken: string) {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + authToken);
+
+    this.albumUrl = 'https://api.spotify.com/v1/albums/'+id;
 
     return this.http.get(this.albumUrl, { headers: headers })
     .pipe(map(res => res.json()));
   }
+
 
 /*   searchMusic(str: string, type='artist'){
     const headers = new HttpHeaders({
