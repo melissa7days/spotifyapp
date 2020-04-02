@@ -13,10 +13,11 @@ export class SearchComponent implements OnInit {
   searchStr:string;
   results: Artist[];
   query: FormControl = new FormControl();
-  constructor(private spotifyService:SpotifyService) { }
+  constructor(private spotifyService:SpotifyService) { 
+  }
 
   ngOnInit(): void {
-    this.searchMusic();
+    
   }
 
   searchMusic(){

@@ -6,7 +6,7 @@ import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   {path:'', component:SearchComponent},
-  {path:'artist/:name', component: ArtistComponent},
+  {path:'artist/:id', component: ArtistComponent},
   {path:'album/:id', component: AlbumComponent},
   {path:'', redirectTo: '/center', pathMatch: 'full'}
 ];
