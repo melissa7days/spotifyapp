@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
-import { Album } from 'src/app/models/Album';
-import { Artist } from 'src/app/models/Artist';
 import { ActivatedRoute } from '@angular/router';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { Artist } from 'src/app/models/Artist';
+import { Album } from 'src/app/models/Album';
+
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
@@ -12,12 +13,11 @@ import { FormControl } from '@angular/forms';
 })
 export class ArtistComponent implements OnInit {
   id:string;
-  artist: Artist[];
+  artist: any;
   albums: Album[];
-  query: FormControl = new FormControl();
-  constructor(private spotifyService:SpotifyService, private route:ActivatedRoute) { }
 
-  ngOnInit(): void {
+  constructor(private spotifyService:SpotifyService, private route:ActivatedRoute) { }
+  ngOnInit() {
     this.route.params
     .pipe(map(params => params['id']))
       .subscribe((id) => {
@@ -30,9 +30,8 @@ export class ArtistComponent implements OnInit {
             this.spotifyService.getAlbums(id, res.access_token)
               .subscribe(albums => {
                 this.albums = albums.items;
-              }); 
+              });
           });
       });
   }
-
 }
