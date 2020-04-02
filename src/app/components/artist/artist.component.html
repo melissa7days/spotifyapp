@@ -1,26 +1,32 @@
 <div *ngIf="artist">
-    <header class="artist-header">
+    <header class="artist-header fixed-top" style="padding-top:8px;">
         <div *ngIf="artist.images.length > 0">
-            <img class="artist-thumb img-circle" src="{{artist.images[0].url}}">
+            <img class="artist-thumb img-circle" src="{{artist.images[0].url}}" style="margin-top: 10px; margin-left: 30px;">
         </div>
-        <h1>{{artist.name}}</h1>
+        <h1 style="margin-top: 10px;">{{artist.name}}</h1>
         <p *ngIf="artist.genres.length > 0">
             Genres: <span *ngFor="let genre of artist.genres">{{genre}}</span>
         </p>
     </header>
-    <div class="artist-albums">
+    <div class="artist-card" style="margin-top: 80px;">
         <div class="row">
-            <div *ngFor="let album of albums">
-                <div class="col-md-3">
-                    <div class="well album">
+            <div class="col-md-3"*ngFor="let album of albums">
+                <div class="card mb-4 mt-5">
+                    <div class="card-body">
                         <div *ngIf="album.images.length > 0">
-                            <img class="album-thumb img-thumbnail" src="{{album.images[0].url}}">
-                            <h4>{{album.name}}</h4>
-                            <a class="btn btn-default btn-block" routerLink="/album/{{album.id}}">Album Details</a>
+                            <img class="album-thumb" src="{{album.images[0].url}}">
+                            <h4 style="text-align: center; margin-top: 5px; margin-bottom: 5px; padding-top: 10px; padding-bottom: 10px; color: #fff; min-width: 100% !important;">{{album.name}}</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="button">
+                                        <a class="btn btn-default btn-block" routerLink="/album/{{album.id}}" style="border: 1px solid #fff;">Album Details</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+         </div>
     </div>
-</div>
+    </div>
