@@ -11,7 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+const appRoutes: Routes = [
+  {path:'', component:SearchComponent},
+  {path:'artist/:id', component: ArtistComponent},
+  {path:'album/:id', component: AlbumComponent},
+  {path:'', redirectTo: '/center', pathMatch: 'full'}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     AppRoutingModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+      RouterModule.forRoot(
+        appRoutes,
+        { enableTracing: true } // <-- debugging purposes only
+      )
   ],
   
   providers: [],
