@@ -126,7 +126,7 @@
       }
     }
   },
-  "defaultProject": "dist/spotify",
+  "defaultProject": "spotify",
   "cli": {
     "analytics": false
   }
