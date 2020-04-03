@@ -3,7 +3,7 @@
 <p>Use Spotify to browse new releases and find your favourite songs</p>
 <form>
     <div class="form-group">
-        <input type="text" name="searchStr"[(ngModel)]="searchStr" class="form-control" placeholder="Search Music"(keyup)="searchMusic()"[formControl]="query" style="border-radius: 30px;">
+        <input type="text" name="searchStr"[(ngModel)]="searchStr" class="form-control" placeholder="Search Artist"(keyup)="searchMusic()"[formControl]="query" style="border-radius: 30px;">
     </div>
 </form>
 
@@ -26,5 +26,8 @@
             </div>
         </div>
     </div>
+    
 </div>
+
+
 <router-outlet></router-outlet>

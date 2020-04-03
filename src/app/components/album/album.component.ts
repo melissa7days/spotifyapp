@@ -26,6 +26,7 @@ export class AlbumComponent implements OnInit {
             this.spotifyService.getAlbum(id, res.access_token)
               .subscribe(album => {
                 this.album = album;
+                console.log(album);
               });
           });
       });

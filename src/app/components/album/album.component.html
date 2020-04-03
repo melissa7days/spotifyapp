@@ -30,7 +30,14 @@
                         <div class="card-body">
                             <h5 style="margin-top: -20px; color: #fff; font-size: 16px; margin-bottom: 20px;">{{track.track_number}} - {{track.name}}</h5>
                             <div class="preview">
-                                <a href="{{track.preview_url}}"target="_blank">Preview Track</a>
+                                <div *ngIf="!(track.preview_url)">
+                                    <p style="color: rgb(196, 0, 0); text-transform: uppercase; font-size: 10px;">no track to preview</p>
+                                <a href="{{track.preview_url}}"target="_blank"style="pointer-events: none; opacity: .4;
+                                cursor: default !important;">Preview Track</a>
+                                </div>
+                                <div *ngIf="(track.preview_url)">
+                                <a href="{{track.preview_url}}"target="_blank" >Preview Track</a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ export class SpotifyService {
   private artistUrl: string;
   private albumsUrl: string;
   private albumUrl: string;
+  private displayArtistsUrl: string;
   private clientId: string = 'a8746fd779094aa0af12746b73a33127';
   private clientSecret: string = '206ac18c11344af9845ac42d95c8e28a';
   constructor(private http: Http) { }
@@ -26,6 +27,15 @@ export class SpotifyService {
     return this.http.post('https://accounts.spotify.com/api/token', body, { headers: headers })
     .pipe(map(res => res.json()));
 
+  }
+  displayArtists(authToken: string) {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + authToken);
+
+    this.displayArtistsUrl = 'https://api.spotify.com/v1/artists';
+
+    return this.http.get(this.displayArtistsUrl, { headers: headers })
+    .pipe(map(res => res.json()));
   }
   searchMusic(query: string, type = 'artist', authToken: string) {
     let headers = new Headers();

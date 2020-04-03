@@ -12,6 +12,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class SearchComponent implements OnInit {
   searchStr:string;
   results: Artist[];
+  display: Artist[];
   query: FormControl = new FormControl();
   constructor(private spotifyService:SpotifyService) { 
   }
@@ -20,11 +21,22 @@ export class SearchComponent implements OnInit {
     
   }
 
+  displayArtists(){
+    this.query.valueChanges
+    .pipe(debounceTime(800),
+    distinctUntilChanged())
+    .subscribe(query => this.spotifyService.getAuth()
+      .subscribe(res => this.spotifyService.displayArtists(res.access_token).subscribe(
+        res => {
+          console.log(res.artists.items)
+          this.display = res.artists.items
+        })
+      ));
+  }
   searchMusic(){
     this.query.valueChanges
     .pipe(debounceTime(800),
-    distinctUntilChanged()
-)
+    distinctUntilChanged())
     .subscribe(query => this.spotifyService.getAuth()
       .subscribe(res => this.spotifyService.searchMusic(query, 'artist', res.access_token).subscribe(
         res => {
